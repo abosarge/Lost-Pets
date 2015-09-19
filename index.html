@@ -10,6 +10,9 @@
   <!--<link href="css/buttons.css" rel="stylesheet">-->
   <link href="css/site.css" rel="stylesheet">
 
+  <!--Apps Custom-->
+  <link href="css/custom_pawpatrol.css" rel="stylesheet">
+
     <!-- Firebase -->
     <script src="https://cdn.firebase.com/js/client/2.2.5/firebase.js"></script>
 
@@ -37,7 +40,7 @@
 
   <body>
 
-    <header>
+    <header class="topheader">
       <div class="headerflex">
         <div class="logo">
           <img src="images/PawPatrol.png" class="headerlogo">
@@ -48,80 +51,76 @@
       </div>
     </header>
 
+    <!-- SIDE BAR -->
+    <div id="report">
+      <header>
+        <h1>Report</h1>
+      </header>
+      <form id="send" action="">
+        <div class="flexform">
+          <p>I
+            <select id="Status" name="pet_status">
+              <optgroup label="Pet Status">
+                <option value="lost">lost</option>
+                <option value="sighted">sighted</option>
+                <option value="found">found</option>
+              </optgroup>
+            </select>
+            a
+              <select id="Pet" name="pet_type">
+                <optgroup label="Pet Species">
+                  <option value="cat">cat</option>
+                  <option value="dog">dog</option>
+                  <option value="bird">bird</option>
+                  <option value="other">other</option>
+                </optgroup>
+              </p>
+              </select>
+            </div>
+            <div class = "flexform">
+              <p>from
+                <div id="locationField">
+                  <input id="autocomplete" placeholder="Enter your location"
+                    onFocus="geolocate()" type="text"></input>
+                </div>
+              </p>
+            </div>
+            <div class = "flexform">
+              <p>on <input type="month" name="month_of_incident">
+                <input type="day" name="day_of_incident">
+                <input type="year" name="year_of_incident">
+              </p>
+            </div>
+            <div class = "flexform">
+              <p>at
+                <input type="time" name="time_of_incident">
+              </p>
+            </div>
+            <div class = "flexform">
+                <p>
+                  Upload a photo of your pet<br>
+                    <input type="file" name="datafile" size="40">
+                </p>
+            </div>
+            <div class = "flexform">
+              <p>My pet looks like</p>
+              <input type="text" cols="30" rows="10">
+              </p>
+            </div>
+            <div class = "flexform">
+            <p>
+              <button id="submit" type="submit">Submit</button>
+            </p>
+            </div>
+          </form>
+
+    </div>
+
 
     <!-- MAP -->
   <div id="map-canvas"></div>
 
 
-
-  <!-- SIDE BAR -->
-  <div id="sidebar-wrapper"></div>
-  <article id="sidebar" class="animated bounceInUp">
-    <header>
-      <h1>Report</h1>
-    </header>
-    <form id="send" action="">
-      <div class="flexform">
-        <p>I
-          <select id="Status" name="pet_status">
-            <optgroup label="Pet Status">
-              <option value="lost">lost</option>
-              <option value="sighted">sighted</option>
-              <option value="found">found</option>
-            </optgroup>
-          </select>
-          a
-            <select id="Pet" name="pet_type">
-              <optgroup label="Pet Species">
-                <option value="cat">cat</option>
-                <option value="dog">dog</option>
-                <option value="bird">bird</option>
-                <option value="other">other</option>
-              </optgroup>
-            </p>
-            </select>
-          </div>
-          <div class = "flexform">
-            <p>from
-              <div id="locationField">
-                <input id="autocomplete" placeholder="Enter your location"
-                  onFocus="geolocate()" type="text"></input>
-              </div>
-            </p>
-          </div>
-          <div class = "flexform">
-            <p>on <input type="month" name="month_of_incident">
-              <input type="day" name="day_of_incident">
-              <input type="year" name="year_of_incident">
-            </p>
-          </div>
-          <div class = "flexform">
-            <p>at
-              <input type="time" name="time_of_incident">
-            </p>
-          </div>
-          <div class = "flexform">
-              <p>
-                Upload a photo of your pet<br>
-                  <input type="file" name="datafile" size="40">
-              </p>
-          </div>
-          <div class = "flexform">
-            <p>My pet looks like</p>
-            <input type="text" cols="30" rows="10">
-            </p>
-          </div>
-          <div class = "flexform">
-          <p>
-            <button id="submit" type="submit">Submit</button>
-          </p>
-          </div>
-        </form>
-
-  </article>
-
-    <!-- Message log -->
-    <div id="log"></div>
 
     <!-- JAVASCRIPT -->
   <!-- Google Maps -->
@@ -149,5 +148,6 @@
     var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
     })();
   </script>
+
   </body>
 </html>
