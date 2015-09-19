@@ -1,12 +1,11 @@
 // Global map variable
 var map;
 
-// Set the center as Firebase HQ
+// Set the center as Baltimore
 var locations = {
-  "FirebaseHQ": [37.785326, -122.405696],
-  "Caltrain": [37.7789, -122.3917]
+  "Baltimore": [39.2833, -76.6167],
 };
-var center = locations["FirebaseHQ"];
+var center = locations["Baltimore"];
 
 // Query radius
 var radiusInKm = 0.5;
@@ -20,8 +19,8 @@ var geoFire = new GeoFire(transitFirebaseRef.child("_geofire"));
 /*************/
 /*  GEOQUERY */
 /*************/
-// Keep track of all of the vehicles currently within the query
-var vehiclesInQuery = {};
+// Keep track of all of the pets currently within the query
+var petsInQuery = {};
 
 // Create a new GeoQuery instance
 var geoQuery = geoFire.query({
@@ -29,54 +28,54 @@ var geoQuery = geoFire.query({
   radius: radiusInKm
 });
 
-/* Adds new vehicle markers to the map when they enter the query */
-geoQuery.on("key_entered", function(vehicleId, vehicleLocation) {
-  // Specify that the vehicle has entered this query
-  vehicleId = vehicleId.split(":")[1];
-  vehiclesInQuery[vehicleId] = true;
+/* Adds new pet markers to the map when they enter the query */
+geoQuery.on("key_entered", function(petId, petLocation) {
+  // Specify that the pet has entered this query
+  petId = petId.split(":")[1];
+  petssInQuery[petId] = true;
 
-  // Look up the vehicle's data in the Transit Open Data Set
-  transitFirebaseRef.child("sf-muni/vehicles").child(vehicleId).once("value", function(dataSnapshot) {
-    // Get the vehicle data from the Open Data Set
-    vehicle = dataSnapshot.val();
+  // Look up the pet's data in the Transit Open Data Set
+  transitFirebaseRef.child("sf-muni/pets").child(petId).once("value", function(dataSnapshot) {
+    // Get the pet data from the Open Data Set
+    pet = dataSnapshot.val();
 
-    // If the vehicle has not already exited this query in the time it took to look up its data in the Open Data
+    // If the pet has not already exited this query in the time it took to look up its data in the Open Data
     // Set, add it to the map
-    if (vehicle !== null && vehiclesInQuery[vehicleId] === true) {
-      // Add the vehicle to the list of vehicles in the query
-      vehiclesInQuery[vehicleId] = vehicle;
+    if (pet !== null && petsInQuery[petId] === true) {
+      // Add the pet to the list of pets in the query
+      petsInQuery[petId] = pet;
 
-      // Create a new marker for the vehicle
-      vehicle.marker = createVehicleMarker(vehicle, getVehicleColor(vehicle));
+      // Create a new marker for the pet
+      pet.marker = createPetMarker(pet, getPetColor(pet));
     }
   });
 });
 
-/* Moves vehicles markers on the map when their location within the query changes */
-geoQuery.on("key_moved", function(vehicleId, vehicleLocation) {
-  // Get the vehicle from the list of vehicles in the query
-  vehicleId = vehicleId.split(":")[1];
-  var vehicle = vehiclesInQuery[vehicleId];
+/* Moves pets markers on the map when their location within the query changes */
+geoQuery.on("key_moved", function(petId, petLocation) {
+  // Get the pet from the list of pets in the query
+  petId = petId.split(":")[1];
+  var pet = petsInQuery[petId];
 
-  // Animate the vehicle's marker
-  if (typeof vehicle !== "undefined" && typeof vehicle.marker !== "undefined") {
-    vehicle.marker.animatedMoveTo(vehicleLocation);
+  // Animate the pet's marker
+  if (typeof pet !== "undefined" && typeof pet.marker !== "undefined") {
+    pet.marker.animatedMoveTo(petLocation);
   }
 });
 
-/* Removes vehicle markers from the map when they exit the query */
-geoQuery.on("key_exited", function(vehicleId, vehicleLocation) {
-  // Get the vehicle from the list of vehicles in the query
-  vehicleId = vehicleId.split(":")[1];
-  var vehicle = vehiclesInQuery[vehicleId];
+/* Removes pet markers from the map when they exit the query */
+geoQuery.on("key_exited", function(petId, petLocation) {
+  // Get the pet from the list of pets in the query
+  petId = petId.split(":")[1];
+  var pet = petsInQuery[petId];
 
-  // If the vehicle's data has already been loaded from the Open Data Set, remove its marker from the map
-  if (vehicle !== true) {
-    vehicle.marker.setMap(null);
+  // If the pet's data has already been loaded from the Open Data Set, remove its marker from the map
+  if (pet !== true) {
+    pet.marker.setMap(null);
   }
 
-  // Remove the vehicle from the list of vehicles in the query
-  delete vehiclesInQuery[vehicleId];
+  // Remove the pet from the list of pets in the query
+  delete petsInQuery[petId];
 });
 
 /*****************/
@@ -122,10 +121,10 @@ function initializeMap() {
 /*  HELPER FUNCTIONS  */
 /**********************/
 /* Adds a marker for the inputted vehicle to the map */
-function createVehicleMarker(vehicle, vehicleColor) {
+function createPetMarker(pet, petColor) {
   var marker = new google.maps.Marker({
-    icon: "https://chart.googleapis.com/chart?chst=d_bubble_icon_text_small&chld=" + vehicle.vtype + "|bbT|" + vehicle.routeTag + "|" + vehicleColor + "|eee",
-    position: new google.maps.LatLng(vehicle.lat, vehicle.lon),
+    icon: "https://chart.googleapis.com/chart?chst=d_bubble_icon_text_small&chld=" + pet.vtype + "|bbT|" + pet.routeTag + "|" + petColor + "|eee",
+    position: new google.maps.LatLng(pet.lat, pet.lon),
     optimized: true,
     map: map
   });
@@ -134,8 +133,8 @@ function createVehicleMarker(vehicle, vehicleColor) {
 }
 
 /* Returns a blue color code for outbound vehicles or a red color code for inbound vehicles */
-function getVehicleColor(vehicle) {
-  return ((vehicle.dirTag && vehicle.dirTag.indexOf("OB") > -1) ? "50B1FF" : "FF6450");
+function getPetColor(pet) {
+  return ((pet.dirTag && pet.dirTag.indexOf("OB") > -1) ? "50B1FF" : "FF6450");
 }
 
 /* Returns true if the two inputted coordinates are approximately equivalent */
