@@ -10,11 +10,11 @@ var center = locations["Baltimore"];
 // Query radius
 var radiusInKm = 0.5;
 
-// Get a reference to the Firebase public transit open data set
-var transitFirebaseRef = new Firebase("https://publicdata-transit.firebaseio.com/")
+// Get a reference to the pet data set
+var petFirebaseRef = new Firebase("https://pawpatrol.firebaseio.com/")
 
-// Create a new GeoFire instance, pulling data from the public transit data
-var geoFire = new GeoFire(transitFirebaseRef.child("_geofire"));
+// Create a new GeoFire instance, pulling data from the pet finding data
+var geoFire = new GeoFire(petFirebaseRef.child("_geofire"));
 
 /*************/
 /*  GEOQUERY */
@@ -32,10 +32,10 @@ var geoQuery = geoFire.query({
 geoQuery.on("key_entered", function(petId, petLocation) {
   // Specify that the pet has entered this query
   petId = petId.split(":")[1];
-  petssInQuery[petId] = true;
+  petsInQuery[petId] = true;
 
-  // Look up the pet's data in the Transit Open Data Set
-  transitFirebaseRef.child("sf-muni/pets").child(petId).once("value", function(dataSnapshot) {
+  // Look up the pet's data in the pet data set
+  transitFirebaseRef.child("  ").child(petId).once("value", function(dataSnapshot) {
     // Get the pet data from the Open Data Set
     pet = dataSnapshot.val();
 
