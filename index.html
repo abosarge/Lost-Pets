@@ -1,19 +1,33 @@
 <!DOCTYPE HTML>
 <html>
-<head>
-  <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+  <head>
+    <title>GeoFire HTML5 Geolocation API Example</title>
 
-  <title>Query Realtime SF Bus Locations With GeoFire 2.0</title>
-
+    
   <!-- STYLESHEETS -->
   <link href="css/animate.min.css" rel="stylesheet">
   <link href="css/font-awesome.min.css" rel="stylesheet">
   <link href="css/buttons.css" rel="stylesheet">
   <link href="css/site.css" rel="stylesheet">
-</head>
 
-<body>
-  <!-- MAP -->
+    <!-- Firebase -->
+    <script src="https://cdn.firebase.com/js/client/2.2.5/firebase.js"></script>
+
+    <!-- RSVP -->
+    <script src="js/vendor/rsvp.min.js"></script>
+
+    <!-- GeoFire -->
+    <script src="js/vendor/geofire.min.js"></script>
+
+    <!-- Custom JS -->
+    <script src="js/html5Geolocation.js" defer></script>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/html5Geolocation.css">
+  </head>
+
+  <body>
+    <!-- MAP -->
   <div id="map-canvas"></div>
 
   <!-- SIDE BAR -->
@@ -66,31 +80,13 @@
     </footer>
   </article>
 
-  <!-- SOCIAL BAR -->
-  <div id="social-bar">
-      <!-- GitHub star button -->
-      <iframe class="github-button" src="githubButton.html?user=firebase&repo=geofire&type=watch&count=true&size=large" allowtransparency="true" frameborder="0" scrolling="0" width="80" height="30"></iframe>
+    <!-- Message log -->
+    <div id="log"></div>
 
-      <!-- GitHub fork button -->
-      <iframe class="github-button" src="githubButton.html?user=firebase&repo=geofire&type=fork&count=true&size=large" allowtransparency="true" frameborder="0" scrolling="0" width="80" height="30"></iframe>
-
-      <!-- Twitter tweet button -->
-      <a href="https://twitter.com/share" class="twitter-share-button" data-url="https://github.com/firebase/geofire" data-text="GeoFire is an open-source library for location-based queries in @Firebase." data-size="large">Tweet</a>
-<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
-  </div>
-
-  <!-- JAVASCRIPT -->
+    <!-- JAVASCRIPT -->
   <!-- Google Maps -->
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA6U2ExB8yLDc7RiGPYK3C3yIzDPpyFJE0&sensor=false"></script>
 
-  <!-- Firebase -->
-  <script src="https://cdn.firebase.com/js/client/2.2.5/firebase.js"></script>
-
-  <!-- RSVP -->
-  <script src="js/vendor/rsvp.min.js"></script>
-
-  <!-- GeoFire -->
-  <script src="js/vendor/geofire.min.js"></script>
 
   <!-- Lo-Dash -->
   <script src="js/vendor/lodash.min.js"></script>
@@ -113,5 +109,5 @@
     var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
     })();
   </script>
-</body>
+  </body>
 </html>
