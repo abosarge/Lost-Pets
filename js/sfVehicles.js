@@ -11,7 +11,7 @@ var center = locations["Baltimore"];
 var radiusInKm = 0.5;
 
 // Get a reference to the pet data set
-var petFirebaseRef = new Firebase("https://pawpatrol.firebaseio.com/")
+var petFirebaseRef = new Firebase("https://radiant-inferno-7526.firebaseio.com/")
 
 // Create a new GeoFire instance, pulling data from the pet finding data
 var geoFire = new GeoFire(petFirebaseRef.child("_geofire"));
