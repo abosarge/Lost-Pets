@@ -1,13 +1,13 @@
 <!DOCTYPE HTML>
 <html>
   <head>
-    <title>GeoFire HTML5 Geolocation API Example</title>
+    <title>Paw Patrol</title>
 
-    
+
   <!-- STYLESHEETS -->
-  <link href="css/animate.min.css" rel="stylesheet">
-  <link href="css/font-awesome.min.css" rel="stylesheet">
-  <link href="css/buttons.css" rel="stylesheet">
+  <!--<link href="css/animate.min.css" rel="stylesheet">-->
+  <!--<link href="css/font-awesome.min.css" rel="stylesheet">-->
+  <!--<link href="css/buttons.css" rel="stylesheet">-->
   <link href="css/site.css" rel="stylesheet">
 
     <!-- Firebase -->
@@ -24,60 +24,100 @@
 
     <!-- Custom CSS -->
     <link rel="stylesheet" href="css/html5Geolocation.css">
+
+    <!-- Location JS -->
+    <script src="js/location.js"></script>
+
+  <!-- Fonts -->
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:800italic' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:300' rel='stylesheet' type='text/css'>
+
+
   </head>
 
   <body>
+
+    <header>
+      <div class="headerflex">
+        <div class="logo">
+          <img src="images/PawPatrol.png" class="headerlogo">
+        </div>
+        <div class="tagline">
+          <p>Reuninting pets and families</p>
+        </div>
+      </div>
+    </header>
+
+
     <!-- MAP -->
   <div id="map-canvas"></div>
+
+
 
   <!-- SIDE BAR -->
   <div id="sidebar-wrapper"></div>
   <article id="sidebar" class="animated bounceInUp">
     <header>
-      <h1><i class="icon-globe"></i> GeoFire</h1>
-      <h2><a target="_blank" href="https://www.firebase.com/?utm_source=geofire">powered by <strong>Firebase</strong></a></h2>
+      <h1>Report</h1>
     </header>
+    <form id="send" action="">
+      <div class="flexform">
+        <p>I
+          <select id="Status" name="pet_status">
+            <optgroup label="Pet Status">
+              <option value="lost">lost</option>
+              <option value="sighted">sighted</option>
+              <option value="found">found</option>
+            </optgroup>
+          </select>
+          a
+            <select id="Pet" name="pet_type">
+              <optgroup label="Pet Species">
+                <option value="cat">cat</option>
+                <option value="dog">dog</option>
+                <option value="bird">bird</option>
+                <option value="other">other</option>
+              </optgroup>
+            </p>
+            </select>
+          </div>
+          <div class = "flexform">
+            <p>from
+              <div id="locationField">
+                <input id="autocomplete" placeholder="Enter your location"
+                  onFocus="geolocate()" type="text"></input>
+              </div>
+            </p>
+          </div>
+          <div class = "flexform">
+            <p>on <input type="month" name="month_of_incident">
+              <input type="day" name="day_of_incident">
+              <input type="year" name="year_of_incident">
+            </p>
+          </div>
+          <div class = "flexform">
+            <p>at
+              <input type="time" name="time_of_incident">
+            </p>
+          </div>
+          <div class = "flexform">
+              <p>
+                Upload a photo of your pet<br>
+                  <input type="file" name="datafile" size="40">
+              </p>
+          </div>
+          <div class = "flexform">
+            <p>My pet looks like</p>
+            <input type="text" cols="30" rows="10">
+            </p>
+          </div>
+          <div class = "flexform">
+          <p>
+            <button id="submit" type="submit">Submit</button>
+          </p>
+          </div>
+        </form>
 
-    <section class="content">
-      <h3>What is GeoFire?</h3>
-      <p>
-        <a target="_blank" href="https://www.github.com/firebase/geofire/">GeoFire</a>
-        is a set of open-source libraries for JavaScript, Objective-C, and Java that
-        allow you to store and query a set of items based on their geographic location.
-        GeoFire uses the <a target="_blank" href="https://www.firebase.com?utm_source=geofire">Firebase</a>
-        database for data storage, allowing query results to be updated in realtime as they
-        change. GeoFire does more than just measure the distance between locations;
-        it selectively loads only the data near certain locations, keeping your
-        applications light and responsive, even with extremely large datasets.
-      </p>
-
-      <h3>About the demo</h3>
-      <p>
-        Firebase provides a <a target="_blank" href="https://www.firebase.com/docs/open-data/transit.html?utm_source=geofire">Transit Open Data Set</a>
-        which contains the realtime locations of public transit vehicles in several major US cities, including
-        San Francisco MUNI. The data set also contains GeoFire data for each vehicle which we used to create this
-        demo. <span style="font-weight: bold; color: #F75A5A;">Drag around the purple circle to the left to see
-        the vehicles which are currently within its radius. The results update in realtime as you move the circle
-        and as vehicles travel around the city.</span> GeoFire handles all of the hard work, telling you exactly
-        when vehicles enter and exit the circle. It also selectively loads only the data geographically close to
-        the circle, meaning GeoFire data for buses in New York or Chicago are not loaded into memory unnecessarily.
-      </p>
-
-      <h3>Download GeoFire</h3>
-      <p>
-        GeoFire is ready for your production apps and plays nicely with the full suite of products offered by
-        <a target="_blank" href="https://www.firebase.com/?utm_source=geofire">Firebase</a>. Read our
-        <a target="_blank" href="https://www.firebase.com/blog/2014-06-23-geofire-two-point-oh.html?utm_source=geofire">blog
-        post on GeoFire</a> to get started and then head over to
-        <a target="_blank" href="https://www.github.com/firebase/geofire/">GitHub</a>
-        to read the full API reference, view example code, and find download instructions for all of the
-        GeoFire clients.
-      </p>
-    </section>
-
-    <footer>
-      <a target="_blank" href="https://github.com/firebase/geofire/" class="button button-large button-block button-primary button-rounded"><i class="icon-github"></i> Download</a>
-    </footer>
   </article>
 
     <!-- Message log -->
