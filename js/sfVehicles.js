@@ -1,26 +1,27 @@
 // Global map variable
 var map;
 
-// Set the center as Baltimore
+// Set the center as Firebase HQ
 var locations = {
-  "Baltimore": [39.2833, -76.6167],
+  "FirebaseHQ": [37.785326, -122.405696],
+  "Caltrain": [37.7789, -122.3917]
 };
-var center = locations["Baltimore"];
+var center = locations["FirebaseHQ"];
 
 // Query radius
 var radiusInKm = 0.5;
 
-// Get a reference to the pet data set
-var petFirebaseRef = new Firebase("https://radiant-inferno-7526.firebaseio.com/")
+// Get a reference to the Firebase public transit open data set
+var transitFirebaseRef = new Firebase("https://publicdata-transit.firebaseio.com/")
 
-// Create a new GeoFire instance, pulling data from the pet finding data
-var geoFire = new GeoFire(petFirebaseRef.child("_geofire"));
+// Create a new GeoFire instance, pulling data from the public transit data
+var geoFire = new GeoFire(transitFirebaseRef.child("_geofire"));
 
 /*************/
 /*  GEOQUERY */
 /*************/
-// Keep track of all of the pets currently within the query
-var petsInQuery = {};
+// Keep track of all of the vehicles currently within the query
+var vehiclesInQuery = {};
 
 // Create a new GeoQuery instance
 var geoQuery = geoFire.query({
@@ -28,54 +29,54 @@ var geoQuery = geoFire.query({
   radius: radiusInKm
 });
 
-/* Adds new pet markers to the map when they enter the query */
-geoQuery.on("key_entered", function(Pets, location) {
-  // Specify that the pet has entered this query
-  petId = Pets.split(":")[1];
-  petsInQuery[petId] = true;
+/* Adds new vehicle markers to the map when they enter the query */
+geoQuery.on("key_entered", function(vehicleId, vehicleLocation) {
+  // Specify that the vehicle has entered this query
+  vehicleId = vehicleId.split(":")[1];
+  vehiclesInQuery[vehicleId] = true;
 
-  // Look up the pet's data in the pet data set
-  petFirebaseRef.child(petId).once("value", function(dataSnapshot) {
-    // Get the pet data from the Open Data Set
-    pet = dataSnapshot.val();
+  // Look up the vehicle's data in the Transit Open Data Set
+  transitFirebaseRef.child("sf-muni/vehicles").child(vehicleId).once("value", function(dataSnapshot) {
+    // Get the vehicle data from the Open Data Set
+    vehicle = dataSnapshot.val();
 
-    // If the pet has not already exited this query in the time it took to look up its data in the Open Data
+    // If the vehicle has not already exited this query in the time it took to look up its data in the Open Data
     // Set, add it to the map
-    if (pet !== null && petsInQuery[petId] === true) {
-      // Add the pet to the list of pets in the query
-      petsInQuery[petId] = pet;
+    if (vehicle !== null && vehiclesInQuery[vehicleId] === true) {
+      // Add the vehicle to the list of vehicles in the query
+      vehiclesInQuery[vehicleId] = vehicle;
 
-      // Create a new marker for the pet
-      pet.marker = createPetMarker(pet, getPetColor(pet));
+      // Create a new marker for the vehicle
+      vehicle.marker = createVehicleMarker(vehicle, getVehicleColor(vehicle));
     }
   });
 });
 
-/* Moves pets markers on the map when their location within the query changes */
-geoQuery.on("key_moved", function(petId, petLocation) {
-  // Get the pet from the list of pets in the query
-  petId = petId.split(":")[1];
-  var pet = petsInQuery[petId];
+/* Moves vehicles markers on the map when their location within the query changes */
+geoQuery.on("key_moved", function(vehicleId, vehicleLocation) {
+  // Get the vehicle from the list of vehicles in the query
+  vehicleId = vehicleId.split(":")[1];
+  var vehicle = vehiclesInQuery[vehicleId];
 
-  // Animate the pet's marker
-  if (typeof pet !== "undefined" && typeof pet.marker !== "undefined") {
-    pet.marker.animatedMoveTo(petLocation);
+  // Animate the vehicle's marker
+  if (typeof vehicle !== "undefined" && typeof vehicle.marker !== "undefined") {
+    vehicle.marker.animatedMoveTo(vehicleLocation);
   }
 });
 
-/* Removes pet markers from the map when they exit the query */
-geoQuery.on("key_exited", function(petId, petLocation) {
-  // Get the pet from the list of pets in the query
-  petId = petId.split(":")[1];
-  var pet = petsInQuery[petId];
+/* Removes vehicle markers from the map when they exit the query */
+geoQuery.on("key_exited", function(vehicleId, vehicleLocation) {
+  // Get the vehicle from the list of vehicles in the query
+  vehicleId = vehicleId.split(":")[1];
+  var vehicle = vehiclesInQuery[vehicleId];
 
-  // If the pet's data has already been loaded from the Open Data Set, remove its marker from the map
-  if (pet !== true) {
-    pet.marker.setMap(null);
+  // If the vehicle's data has already been loaded from the Open Data Set, remove its marker from the map
+  if (vehicle !== true) {
+    vehicle.marker.setMap(null);
   }
 
-  // Remove the pet from the list of pets in the query
-  delete petsInQuery[petId];
+  // Remove the vehicle from the list of vehicles in the query
+  delete vehiclesInQuery[vehicleId];
 });
 
 /*****************/
@@ -121,10 +122,10 @@ function initializeMap() {
 /*  HELPER FUNCTIONS  */
 /**********************/
 /* Adds a marker for the inputted vehicle to the map */
-function createPetMarker(pet, petColor) {
+function createVehicleMarker(vehicle, vehicleColor) {
   var marker = new google.maps.Marker({
-    icon: "https://chart.googleapis.com/chart?chst=d_bubble_icon_text_small&chld=" + pet.vtype + "|bbT|" + pet.routeTag + "|" + petColor + "|eee",
-    position: new google.maps.LatLng(pet.lat, pet.lon),
+    icon: "https://chart.googleapis.com/chart?chst=d_bubble_icon_text_small&chld=" + vehicle.vtype + "|bbT|" + vehicle.routeTag + "|" + vehicleColor + "|eee",
+    position: new google.maps.LatLng(vehicle.lat, vehicle.lon),
     optimized: true,
     map: map
   });
@@ -133,8 +134,8 @@ function createPetMarker(pet, petColor) {
 }
 
 /* Returns a blue color code for outbound vehicles or a red color code for inbound vehicles */
-function getPetColor(pet) {
-  return ((pet.dirTag && pet.dirTag.indexOf("OB") > -1) ? "50B1FF" : "FF6450");
+function getVehicleColor(vehicle) {
+  return ((vehicle.dirTag && vehicle.dirTag.indexOf("OB") > -1) ? "50B1FF" : "FF6450");
 }
 
 /* Returns true if the two inputted coordinates are approximately equivalent */
