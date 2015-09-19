@@ -1,6 +1,6 @@
 (function() {
   // Generate a random Firebase location
-  var firebaseUrl = "https://pawpatrol.firebaseio.com/";
+  var firebaseUrl = "https://radiant-inferno-7526.firebaseio.com/";
   var firebaseRef = new Firebase(firebaseUrl);
 
   // Set the URL of the link element to be the Firebase URL

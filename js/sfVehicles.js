@@ -29,13 +29,13 @@ var geoQuery = geoFire.query({
 });
 
 /* Adds new pet markers to the map when they enter the query */
-geoQuery.on("key_entered", function(petId, petLocation) {
+geoQuery.on("key_entered", function(Pets, location) {
   // Specify that the pet has entered this query
-  petId = petId.split(":")[1];
+  petId = Pets.split(":")[1];
   petsInQuery[petId] = true;
 
   // Look up the pet's data in the pet data set
-  transitFirebaseRef.child("  ").child(petId).once("value", function(dataSnapshot) {
+  petFirebaseRef.child(petId).once("value", function(dataSnapshot) {
     // Get the pet data from the Open Data Set
     pet = dataSnapshot.val();
 
