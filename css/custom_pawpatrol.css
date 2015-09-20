@@ -2,6 +2,7 @@
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
+  border: red 1px solid;
   }
 
 .topheader {
@@ -57,14 +58,10 @@
 }
 
 #report {
-  background: none;
-  -moz-border-radius:3px;
-  -webkit-border-radius:3px;
-  border-radius:3px;
   padding: 1em;
   position: absolute;
-  top: 113px;
-  left:0px;
+  top: 112px;
+  left:40px;
   bottom:0px;
   width: 35%;
   z-index: 1;
