@@ -56,16 +56,6 @@
   }
 }
 
-<<<<<<< HEAD
-#report-btn{
-  background: #CCCCCC;
-  padding: 1em;
-  float:left;
-  position: absolute;
-  width:350px;
-  z-index: 1;
-}
-=======
 #report {
   background: none;
   -moz-border-radius:3px;
@@ -87,15 +77,15 @@
 }
 
 #report-btn{
-  background: #CCCCCC;
+  background: #8dbc46;
   padding: 1em;
   position: absolute;
   width:350px;
   z-index: 1;
 }
->>>>>>> 1de0c40837310732f2a0ce7a4fea88e63157bebe
+
 #report-btn h1 {
-  color: #8dbc46;
+  color: #FFFFFF;
   font-size: 2em;
   font-family: 'Roboto', sans-serif;
   font-weight:800;
@@ -103,43 +93,21 @@
   text-align:center;
   text-transform: uppercase;
   margin:0px auto;
+  padding-right: 10px;
   text-shadow:0px 1px 0px rgba(255,255,255,0.3)
 }
 
-<<<<<<< HEAD
-#report {
-  background: #FFFFFF;
-  -moz-border-radius:3px;
-  -webkit-border-radius:3px;
-  border-radius:3px;
-  padding: 1em;
-  float:left;
-  left:0px;
-  bottom:0px;
-  width:350px;
-  z-index: 1;
-}
-
-#report p {
-  font-family: 'Roboto', sans-serif;
-  font-size: .75em;
-  line-height: 1.5em;
-=======
 #map {
   width: 100%;
   height: 100%;
   position: fixed;
->>>>>>> 1de0c40837310732f2a0ce7a4fea88e63157bebe
-}
-
-#map {
-  height: 100%;
 }
 
 .formwrapper {
   padding: 1em 2em;
   position: relative;
   top: 65px;
+  width: 350px;
   background-color: #FFFFFF;
 }
 
@@ -174,7 +142,7 @@ input[type=text], select {
   border-right: 0;
   border-bottom-left-radius: 5px;
   border-top-left-radius: 5px;
-  width: 30%;
+  width: 28%;
   clear: left;
   margin-top: 6px;
   float: left;
@@ -183,15 +151,15 @@ input[type=text], select {
 }
 
 .row .element:nth-child(even) {
-  width: 70%;
-  padding: 5px 5px 3px 5px;
+  width: 72%;
+  padding: 2px;
   border: 1px solid #d4d4d4;
   border-bottom-right-radius: 5px;
   border-top-right-radius: 4px;
   line-height: 1.5em;
   float: right;
   box-shadow: inset 0px 2px 2px #ececec;
-  margin: 6px 0 0;
+  margin: 6px 2px 0 0;
 }
 
 
@@ -220,6 +188,10 @@ input.clearfix {
 
 select.clearfix {
   border: none;
+  width: 100%;
+}
+
+input[type=file], select {
   width: 100%;
 }
 
