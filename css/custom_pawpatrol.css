@@ -98,6 +98,7 @@
   bottom:0px;
   width: 35%;
   z-index: 1;
+  margin-left: 30px;
 }
 
 @media (max-width: 600px) {
