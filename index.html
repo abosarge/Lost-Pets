@@ -46,7 +46,7 @@
           <img src="images/PawPatrol.png" class="headerlogo">
         </div>
         <div class="tagline">
-          <p>Reuninting pets and families</p>
+          <p>Reuniting pets and families</p>
         </div>
       </div>
     </header>
@@ -56,10 +56,105 @@
       <header>
         <h1>Report</h1>
       </header>
-      <form id="send" action="">
+
+      <div class="formwrapper">
+        <div class="row"> <!--flexbox parent-->
+          <div class="element"><!--flexbox child-->
+            <p>I</p>
+          </div>
+          <div class="element"><!--flexbox child-->
+            <select id="Status" name="pet_status" class="clearfix" required>
+                <option value="lost">lost</option>
+                <option value="sighted">saw</option>
+                <option value="found">found</option>
+            </select>
+          </div>
+        </div>
+        <div class="row">
+          <div class="element"><!--flexbox child-->
+            <p>my / a</p>
+          </div>
+          <div class="element"><!--flexbox child-->
+            <select id="Pet" name="pet_type" class="clearfix" required>
+                <option value="cat">cat</option>
+                <option value="dog">dog</option>
+                <option value="bird">bird</option>
+                <option value="other">other</option>
+            </select>
+          </div>
+        </div>
+        <div class="row"> <!--flexbox parent-->
+          <div class="element"><!--flexbox child-->
+            <p>from</p>
+          </div>
+          <div class="element"><!--flexbox child-->
+            <input id="autocomplete" placeholder="Enter your location"
+                onFocus="geolocate()"  class="clearfix" type="text" class="formlocation" required></input>
+          </div>
+        </div>
+        <div class="row"> <!--flexbox parent-->
+          <div class="element"><!--flexbox child-->
+            <p>on</p>
+          </div>
+          <div class="element"><!--flexbox child-->
+            <input id="date" name="date" class="clearfix" type="text" required>
+          </div>
+        </div>
+        <div class="row"> <!--flexbox parent-->
+          <div class="element"><!--flexbox child-->
+            <p>at</p>
+          </div>
+          <div class="element"><!--flexbox child-->
+            <input type="time" name="time_of_incident"  class="clearfix" required>
+          </div>
+        </div>
+        <div class="row"> <!--flexbox parent-->
+          <div class="element"><!--flexbox child-->
+            <p>Pet Name</p>
+          </div>
+          <div class="element"><!--flexbox child-->
+            <input type="text" class="clearfix" required>
+          </div>
+        </div>
+        <div class="row"> <!--flexbox parent-->
+          <div class="element"><!--flexbox child-->
+            <p>Description</p>
+          </div>
+          <div class="element"><!--flexbox child-->
+            <input type="text"  class="clearfix" placeholder="Canon is a three-legged chihuahua" required>
+          </div>
+        </div>
+        <div class="row"> <!--flexbox parent-->
+          <div class="element"><!--flexbox child-->
+            <p>Email</p>
+          </div>
+          <div class="element"><!--flexbox child-->
+            <input type="email" class="clearfix" name="email" required>
+          </div>
+        </div>
+        <div class="row"> <!--flexbox parent-->
+          <div class="elementoneline"><!--flexbox child-->
+            <p>Upload a photo</p>
+          </div>
+        </div>
+        <div class="row"> <!--flexbox parent-->
+          <div class="elementoneline"><!--flexbox child-->
+            <input id="choosefile" type="file" name="datafile" size="40">
+          </div>
+        </div>
+        <div class="row"> <!--flexbox parent-->
+          <div class="elementsubmit"><!--flexbox child-->
+            <button id="submit" type="submit">Submit</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+      <!--<form id="send" action="">
         <div class="flexform">
           <p>I
-            <select id="Status" name="pet_status">
+            <select id="Status" name="pet_status" required>
               <optgroup label="Pet Status">
                 <option value="lost">lost</option>
                 <option value="sighted">sighted</option>
@@ -67,7 +162,7 @@
               </optgroup>
             </select>
             a
-              <select id="Pet" name="pet_type">
+              <select id="Pet" name="pet_type" required>
                 <optgroup label="Pet Species">
                   <option value="cat">cat</option>
                   <option value="dog">dog</option>
@@ -78,41 +173,49 @@
               </select>
             </div>
             <div class = "flexform">
-              <p>from
-                <div id="locationField">
-                  <input id="autocomplete" placeholder="Enter your location"
-                    onFocus="geolocate()" type="text"></input>
-                </div>
+              <div class = "from">
+              <p>from</p>
+              </div>
+              <div class = "floatinput">
+                <input id="autocomplete" placeholder="Enter your location"
+                    onFocus="geolocate()" type="text" class="formlocation" required></input>
+              </div>
               </p>
             </div>
             <div class = "flexform">
-              <p>on <input type="month" name="month_of_incident">
-                <input type="day" name="day_of_incident">
-                <input type="year" name="year_of_incident">
+              <p>on <input id="startdate" name="startdate" required>
               </p>
             </div>
             <div class = "flexform">
-              <p>at
-                <input type="time" name="time_of_incident">
+              <p>at <input type="time" name="time_of_incident" required>
               </p>
             </div>
             <div class = "flexform">
-                <p>
-                  Upload a photo of your pet<br>
+              <p>Pet Name
+              <input type="text" required>
+              </p>
+            </div>
+            <div class = "flexform">
+              <p>Description
+              <input type="text" cols="30" rows="10" class = "flexform_description" placeholder="Canon is a three-legged chihuahua" required>
+              </p>
+            </div>
+            <div class = "flexform">
+                <p>Upload a photo of your pet<br>
                     <input type="file" name="datafile" size="40">
                 </p>
             </div>
             <div class = "flexform">
-              <p>My pet looks like</p>
-              <input type="text" cols="30" rows="10">
-              </p>
+              <p>Email
+              <input type="email" name="email" required>
+            </p>
             </div>
             <div class = "flexform">
             <p>
               <button id="submit" type="submit">Submit</button>
             </p>
             </div>
-          </form>
+          </form>-->
 
     </div>
 
