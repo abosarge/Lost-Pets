@@ -33,19 +33,21 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
 }
 
 // Create a Firebase reference where GeoFire will store its information
-var firebaseRef = new Firebase("https://radiant-inferno-7526.firebaseio.com/");
+var firebaseRef = new Firebase("https://radiant-inferno-7526.firebaseio.com/pets");
 
 // Create a GeoFire index
 var geoFire = new GeoFire(firebaseRef);
 
 var ref = geoFire.ref(); 
 
-geoFire.get("pets").then(function(location) {
-  if (location === null) {
-    console.log("Provided key is not in GeoFire");
+
+
+geoFire.get("-JzcI30ra2AY6ufl8itU").then(function(location) {
+  if (location.location === null) {
+    console.log("Provided key is not in GeoFire" );
   }
   else {
-    console.log("Provided key has a location of " + location);
+    console.log("Provided key has a location of " + location.location);
   }
 }, function(error) {
   console.log("Error: " + error);
