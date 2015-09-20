@@ -212,12 +212,19 @@
 
 
   <!-- JAVASCRIPT -->
+
  <script>
 // Provide your access token
 L.mapbox.accessToken = 'pk.eyJ1IjoibHlubXVsZHJvdyIsImEiOiJjaWVzMWR2Z3AwMGRvc2dtM2c4NXVydzlqIn0.0CAMMM52Z43LLniDwGFYmA';
 // Create a map in the div #map
-L.mapbox.map('map', 'lynmuldrow.ng7hjjfg');
+
+var map = L.mapbox.map('map', 'lynmuldrow.ng7hjjfg');
+
+ map.featureLayer.on('click', function(e) {
+        map.panTo(e.layer.getLatLng());
+        });
 </script>
+
   <!--Report Box-->
   <script type="text/javascript">
     $( "#report-btn" ).click(function() {
