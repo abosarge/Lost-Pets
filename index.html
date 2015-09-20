@@ -27,6 +27,50 @@
   <script src='https://api.mapbox.com/mapbox.js/v2.2.2/mapbox.js'></script>
   <link href='https://api.mapbox.com/mapbox.js/v2.2.2/mapbox.css' rel='stylesheet' />
 
+  <style>
+    .menu-ui {
+      background:#fff;
+      position:absolute;
+      top:10px;right:10px;
+      z-index:1;
+      border-radius:3px;
+      width:120px;
+      border:1px solid rgba(0,0,0,0.4);
+      }
+      .menu-ui a {
+        font-size:13px;
+        color:#cdeab3;
+        display:block;
+        margin:0;padding:0;
+        padding:10px;
+        text-decoration:none;
+        border-bottom:1px solid rgba(0,0,0,0.25);
+        text-align:center;
+        }
+        .menu-ui a:first-child {
+          border-radius:3px 3px 0 0;
+          }
+        .menu-ui a:last-child {
+          border:none;
+          border-radius:0 0 3px 3px;
+          }
+        .menu-ui a:hover {
+          background:#f8f8f8;
+          color:#404040;
+          }
+        .menu-ui a.active,
+        .menu-ui a.active:hover {
+          background:#3887BE;
+          color:#FFF;
+      }`
+</style>
+<nav id='menu-ui' class='menu-ui'>
+  <a href='#' class='active' id='filter-all'>All Info</a>
+  <a href='#' id='filter-lost'>Lost Pets</a>
+  <a href='#' id='filter-found'>Found Pets</a>
+  <a href='#' id='filter-sighting'>Pet Sightings</a>
+</nav>
+
   </head>
 
   <body>
@@ -216,11 +260,9 @@ var map = L.mapbox.map('map', 'lynmuldrow.ng7hjjfg');
     else {
       $(".formwrapper").hide();
       $("#report-btn").show();
-​
       $("#report-btn").click(function(){
         $(".formwrapper").slideToggle();
       });
-​
       }
   });
   </script>
