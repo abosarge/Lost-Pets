@@ -39,11 +39,13 @@
     </header>
 
     <!-- Form -->
+
     <div id="report">
-      <button id="report-btn">
+      <button id="report-btn" type ="submit">
         <h1>Report</h1>
       </button>
-      <div class="formwrapper">
+      <div name="report_form">
+        <form class="form form--complex">
         <div class="row"> <!--flexbox parent-->
           <div class="element"><!--flexbox child-->
             <p>I</p>
@@ -135,83 +137,107 @@
         </div>
       </div>
     </div>
-
-
-      <!--<form id="send" action="">
-        <div class="flexform">
-          <p>I
-            <select id="Status" name="pet_status" required>
-              <optgroup label="Pet Status">
-                <option value="lost">lost</option>
-                <option value="sighted">sighted</option>
-                <option value="found">found</option>
-              </optgroup>
-            </select>
-            a
-              <select id="Pet" name="pet_type" required>
-                <optgroup label="Pet Species">
-                  <option value="cat">cat</option>
-                  <option value="dog">dog</option>
-                  <option value="bird">bird</option>
-                  <option value="other">other</option>
-                </optgroup>
-              </p>
-              </select>
-            </div>
-            <div class = "flexform">
-              <div class = "from">
-              <p>from</p>
-              </div>
-              <div class = "floatinput">
-                <input id="autocomplete" placeholder="Enter your location"
-                    onFocus="geolocate()" type="text" class="formlocation" required></input>
-              </div>
-              </p>
-            </div>
-            <div class = "flexform">
-              <p>on <input id="startdate" name="startdate" required>
-              </p>
-            </div>
-            <div class = "flexform">
-              <p>at <input type="time" name="time_of_incident" required>
-              </p>
-            </div>
-            <div class = "flexform">
-              <p>Pet Name
-              <input type="text" required>
-              </p>
-            </div>
-            <div class = "flexform">
-              <p>Description
-              <input type="text" cols="30" rows="10" class = "flexform_description" placeholder="Canon is a three-legged chihuahua" required>
-              </p>
-            </div>
-            <div class = "flexform">
-                <p>Upload a photo of your pet<br>
-                    <input type="file" name="datafile" size="40">
-                </p>
-            </div>
-            <div class = "flexform">
-              <p>Email
-              <input type="email" name="email" required>
-            </p>
-            </div>
-            <div class = "flexform">
-            <p>
-              <button id="submit" type="submit">Submit</button>
-            </p>
-            </div>
-          </form>-->
+</form>
 
     </div>
-
-
     <!-- MAP -->
     <div id="map"></div>
 
 
 
   <!-- JAVASCRIPT -->
+
+  <script LANGUAGE="JavaScript">
+
+     function readText (form) {
+      TestVar =form.inputbox.value;
+      alert ("You typed: " + TestVar);
+    }
+    function writeText (form) {
+      form.inputbox.value = "Have a nice day!"
+    }
+
+    L.mapbox.accessToken = 'pk.eyJ1IjoibHlubXVsZHJvdyIsImEiOiJjaWVzMWR2Z3AwMGRvc2dtM2c4NXVydzlqIn0.0CAMMM52Z43LLniDwGFYmA';
+    var map = L.mapbox.map('map', 'mapbox.streets')
+        .setView([39.2833, -76.6167], 16);
+
+    L.mapbox.featureLayer({
+        // this feature is in the GeoJSON format: see geojson.org
+        // for the full specification
+        type: 'Feature',
+        geometry: {
+            type: 'Point',
+            // coordinates here are in longitude, latitude order because
+            // x, y is the standard for GeoJSON and many formats
+            coordinates: [
+              -77.03221142292,
+              38.913371603574
+            ]
+        },
+        properties: {
+            title: 'Peregrine Espresso',
+            description: '1718 14th St NW, Washington, DC',
+            // one can customize markers by adding simplestyle properties
+            // https://www.mapbox.com/guides/an-open-platform/#simplestyle
+            'marker-size': 'large',
+            'marker-color': '#BE9A6B',
+            'marker-symbol': 'cafe'
+        }
+    }).addTo(map);
+</script>
+
+<script>
+L.mapbox.accessToken = '<your access token here>';
+var map = L.mapbox.map('map', 'mapbox.streets')
+    .setView([40, -74.50], 8);
+​
+var myLayer = L.mapbox.featureLayer().addTo(map);
+​
+var geoJson = [{
+    "type": "Feature",
+    "geometry": {
+        "type": "Point",
+        "coordinates": [-75.00, 40]
+    },
+    "properties": {
+        "title": "Small astronaut",
+        "icon": {
+            "iconUrl": "/mapbox.js/assets/images/astronaut1.png",
+            "iconSize": [50, 50], // size of the icon
+            "iconAnchor": [25, 25], // point of the icon which will correspond to marker's location
+            "popupAnchor": [0, -25], // point from which the popup should open relative to the iconAnchor
+            "className": "dot"
+        }
+    }
+}, {
+    "type": "Feature",
+    "geometry": {
+        "type": "Point",
+        "coordinates": [-74.00, 40]
+    },
+    "properties": {
+        "title": "Big astronaut",
+        "icon": {
+            "iconUrl": "/mapbox.js/assets/images/astronaut2.png",
+            "iconSize": [100, 100],
+            "iconAnchor": [50, 50],
+            "popupAnchor": [0, -55],
+            "className": "dot"
+        }
+    }
+}];
+​
+// Set a custom icon on each marker based on feature properties.
+myLayer.on('layeradd', function(e) {
+    var marker = e.layer,
+        feature = marker.feature;
+​
+    marker.setIcon(L.icon(feature.properties.icon));
+});
+​
+// Add features to the map.
+myLayer.setGeoJSON(geoJson);
+</script>
 
  <script>
 // Provide your access token
