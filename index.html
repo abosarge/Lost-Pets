@@ -7,6 +7,10 @@
   <!--<link href="css/animate.min.css" rel="stylesheet">-->
   <!--<link href="css/font-awesome.min.css" rel="stylesheet">-->
   <!--<link href="css/buttons.css" rel="stylesheet">-->
+  <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+  <meta content="utf-8" http-equiv="encoding">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <link href="css/site.css" rel="stylesheet">
 
   <!--Apps Custom-->
@@ -21,7 +25,7 @@
   <script src="bower_components/jquery-ui/jquery-ui.min.js"></script>
 
   <script src='https://api.mapbox.com/mapbox.js/v2.2.2/mapbox.js'></script>
-<link href='https://api.mapbox.com/mapbox.js/v2.2.2/mapbox.css' rel='stylesheet' />
+  <link href='https://api.mapbox.com/mapbox.js/v2.2.2/mapbox.css' rel='stylesheet' />
 
   </head>
 
@@ -44,8 +48,10 @@
       <button id="report-btn" type ="submit">
         <h1>Report</h1>
       </button>
+
       <div class="formwrapper">
-        <form class="form form--complex">
+        <form name="report-form" method="GET" action="">
+
         <div class="row"> <!--flexbox parent-->
           <div class="element"><!--flexbox child-->
             <p>I</p>
@@ -58,6 +64,7 @@
             </select>
           </div>
         </div>
+
         <div class="row">
           <div class="element"><!--flexbox child-->
             <p>my / a</p>
@@ -71,15 +78,17 @@
             </select>
           </div>
         </div>
+
         <div class="row"> <!--flexbox parent-->
           <div class="element"><!--flexbox child-->
             <p>from</p>
           </div>
           <div class="element"><!--flexbox child-->
-            <input id="autocomplete" placeholder="Enter your location"
+            <input id="autocomplete" value=""placeholder="Enter your location"
                 onFocus="geolocate()"  class="clearfix" type="text" class="formlocation" required></input>
           </div>
         </div>
+
         <div class="row"> <!--flexbox parent-->
           <div class="element"><!--flexbox child-->
             <p>on</p>
@@ -88,52 +97,47 @@
             <input id="date" name="date" class="clearfix" type="text" required>
           </div>
         </div>
+
         <div class="row"> <!--flexbox parent-->
           <div class="element"><!--flexbox child-->
             <p>at</p>
           </div>
           <div class="element"><!--flexbox child-->
-            <input type="time" name="time_of_incident"  class="clearfix" required>
+            <input id="time" type="time" name="time_of_incident"  class="clearfix" required>
           </div>
         </div>
+
         <div class="row"> <!--flexbox parent-->
           <div class="element"><!--flexbox child-->
             <p>Pet Name</p>
           </div>
           <div class="element"><!--flexbox child-->
-            <input type="text" class="clearfix" >
+            <input id="name" type="text" class="clearfix" >
           </div>
         </div>
+
         <div class="row"> <!--flexbox parent-->
           <div class="element"><!--flexbox child-->
             <p>Description</p>
           </div>
           <div class="element"><!--flexbox child-->
-            <input type="text"  class="clearfix" placeholder="Canon is a three-legged chihuahua" required>
+            <input id="description" type="text"  class="clearfix" placeholder="Canon is a three-legged chihuahua" required>
           </div>
         </div>
+
         <div class="row"> <!--flexbox parent-->
           <div class="element"><!--flexbox child-->
             <p>Email</p>
           </div>
           <div class="element"><!--flexbox child-->
-            <input type="email" class="clearfix" name="email" >
+            <input type="email" class="clearfix" name="email" placeholder="me@myhost.com">
           </div>
         </div>
-        <div class="row"> <!--flexbox parent-->
-          <div class="elementoneline"><!--flexbox child-->
-            <p>Upload a photo</p>
-          </div>
-        </div>
-        <div class="row"> <!--flexbox parent-->
-          <div class="elementoneline"><!--flexbox child-->
-            <input id="choosefile" type="file" name="datafile" size="40">
-          </div>
-        </div>
-        <div class="row"> <!--flexbox parent-->
+
           <div class="elementsubmit"><!--flexbox child-->
-            <button id="submit" type="submit">Submit</button>
+            <button id="submit" type="submit" onclick="readText()">Submit</button>
           </div>
+
         </div>
       </div>
     </div>
@@ -149,13 +153,11 @@
 
   <script LANGUAGE="JavaScript">
 
-     function readText (form) {
-      TestVar =form.inputbox.value;
-      alert ("You typed: " + TestVar);
+    function readText() {
+        var
     }
-    function writeText (form) {
-      form.inputbox.value = "Have a nice day!"
-    }
+
+
     L.mapbox.accessToken = 'pk.eyJ1IjoibHlubXVsZHJvdyIsImEiOiJjaWVzMWR2Z3AwMGRvc2dtM2c4NXVydzlqIn0.0CAMMM52Z43LLniDwGFYmA';
     var map = L.mapbox.map('map', 'lynmuldrow.ng7hjjfg');
 
@@ -181,60 +183,15 @@
             'marker-color': '#BE9A6B',
             'marker-symbol': 'cafe'
         }
-    }).addTo(map);
-</script>
 
-<script>
-L.mapbox.accessToken = '<your access token here>';
-var map = L.mapbox.map('map', 'mapbox.streets')
-    .setView([40, -74.50], 8);
-​
-var myLayer = L.mapbox.featureLayer().addTo(map);
-​
-var geoJson = [{
-    "type": "Feature",
-    "geometry": {
-        "type": "Point",
-        "coordinates": [-75.00, 40]
-    },
-    "properties": {
-        "title": "Small astronaut",
-        "icon": {
-            "iconUrl": "/mapbox.js/assets/images/astronaut1.png",
-            "iconSize": [50, 50], // size of the icon
-            "iconAnchor": [25, 25], // point of the icon which will correspond to marker's location
-            "popupAnchor": [0, -25], // point from which the popup should open relative to the iconAnchor
-            "className": "dot"
-        }
-    }
-}, {
-    "type": "Feature",
-    "geometry": {
-        "type": "Point",
-        "coordinates": [-74.00, 40]
-    },
-    "properties": {
-        "title": "Big astronaut",
-        "icon": {
-            "iconUrl": "/mapbox.js/assets/images/astronaut2.png",
-            "iconSize": [100, 100],
-            "iconAnchor": [50, 50],
-            "popupAnchor": [0, -55],
-            "className": "dot"
-        }
-    }
-}];
-​
-// Set a custom icon on each marker based on feature properties.
-myLayer.on('layeradd', function(e) {
-    var marker = e.layer,
-        feature = marker.feature;
-​
-    marker.setIcon(L.icon(feature.properties.icon));
-});
-​
-// Add features to the map.
-myLayer.setGeoJSON(geoJson);
+        // Disable drag and zoom handlers.
+            map.dragging.disable();
+            map.touchZoom.disable();
+            map.doubleClickZoom.disable();
+            map.scrollWheelZoom.disable();
+            // Disable tap handler, if present.
+            if (map.tap) map.tap.disable();
+    }).addTo(map);
 </script>
 
  <script>
@@ -249,11 +206,23 @@ var map = L.mapbox.map('map', 'lynmuldrow.ng7hjjfg');
         });
 </script>
 
-  <!--Report Box-->
-  <script type="text/javascript">
-    $( "#report-btn" ).click(function() {
-      $( ".formwrapper" ).toggle( "fade", 1000 );
-    });
+<script type="text/javascript">
+  $(document).ready(function(){
+    if ( $(window).width() > 680) {
+      $( "#report-btn" ).click(function() {
+        $( ".formwrapper" ).toggle( "fade", 1000 );
+      });
+    }
+    else {
+      $(".formwrapper").hide();
+      $("#report-btn").show();
+​
+      $("#report-btn").click(function(){
+        $(".formwrapper").slideToggle();
+      });
+​
+      }
+  });
   </script>
   </body>
 </html>
