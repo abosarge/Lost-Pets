@@ -20,6 +20,9 @@
   <script src="bower_components/jquery/dist/jquery.min.js"></script>
   <script src="bower_components/jquery-ui/jquery-ui.min.js"></script>
 
+  <script src='https://api.mapbox.com/mapbox.js/v2.2.2/mapbox.js'></script>
+<link href='https://api.mapbox.com/mapbox.js/v2.2.2/mapbox.css' rel='stylesheet' />
+
   </head>
 
   <body>
@@ -209,10 +212,12 @@
 
 
   <!-- JAVASCRIPT -->
-  <script src="js/main.js"></script>
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDhNZwKQUo9n1ZJM5eXo3HS3uO2St4Qs_I&signed_in=true&callback=initMap"
-      async defer>
-  </script>
+ <script>
+// Provide your access token
+L.mapbox.accessToken = 'pk.eyJ1IjoibHlubXVsZHJvdyIsImEiOiJjaWVzMWR2Z3AwMGRvc2dtM2c4NXVydzlqIn0.0CAMMM52Z43LLniDwGFYmA';
+// Create a map in the div #map
+L.mapbox.map('map', 'lynmuldrow.ng7hjjfg');
+</script>
   <!--Report Box-->
   <script type="text/javascript">
     $( "#report-btn" ).click(function() {
