@@ -44,7 +44,7 @@
       <button id="report-btn" type ="submit">
         <h1>Report</h1>
       </button>
-      <div name="report_form">
+      <div class="formwrapper">
         <form class="form form--complex">
         <div class="row"> <!--flexbox parent-->
           <div class="element"><!--flexbox child-->
@@ -156,10 +156,8 @@
     function writeText (form) {
       form.inputbox.value = "Have a nice day!"
     }
-
     L.mapbox.accessToken = 'pk.eyJ1IjoibHlubXVsZHJvdyIsImEiOiJjaWVzMWR2Z3AwMGRvc2dtM2c4NXVydzlqIn0.0CAMMM52Z43LLniDwGFYmA';
-    var map = L.mapbox.map('map', 'mapbox.streets')
-        .setView([39.2833, -76.6167], 16);
+    var map = L.mapbox.map('map', 'lynmuldrow.ng7hjjfg');
 
     L.mapbox.featureLayer({
         // this feature is in the GeoJSON format: see geojson.org
@@ -187,7 +185,7 @@
 </script>
 
 <script>
-L.mapbox.accessToken = 'pk.eyJ1IjoibHlubXVsZHJvdyIsImEiOiJjaWVzMWR2Z3AwMGRvc2dtM2c4NXVydzlqIn0.0CAMMM52Z43LLniDwGFYmA';
+L.mapbox.accessToken = '<your access token here>';
 var map = L.mapbox.map('map', 'mapbox.streets')
     .setView([40, -74.50], 8);
 ​
