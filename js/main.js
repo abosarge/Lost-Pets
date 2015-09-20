@@ -38,20 +38,55 @@ var firebaseRef = new Firebase("https://radiant-inferno-7526.firebaseio.com/pets
 // Create a GeoFire index
 var geoFire = new GeoFire(firebaseRef);
 
-var ref = geoFire.ref(); 
+var ref = geoFire.ref();
 
 
+var info;
+var petID;
+var testing;
+var points = new Array();
 
-geoFire.get("-JzcI30ra2AY6ufl8itU").then(function(location) {
-  if (location.location === null) {
+// Attach an asynchronous callback to read the data at our posts reference
+geoFire.ref().on("child_added", function(snapshot) {
+  info = snapshot.val();
+  petID = snapshot.key();
+
+  console.log(info.lat_long)
+  testing = info.name;
+
+  points.push(info.lat_long);
+
+    geoFire.set("pet_1", [39.2833, -76.6167]).then(function() {
+      console.log("Points Added ");
+
+     }).catch(function(error) {
+       console.log("Error adding venue " + petID + " to GeoFire:", error);
+   });
+
+}, function (errorObject) {
+  console.log("The read failed: " + errorObject.code);
+});
+
+console.log("Entering get()");
+geoFire.get("pet_1").then(function(location) {
+  console.log(location);
+  if (location === null) {
     console.log("Provided key is not in GeoFire" );
   }
   else {
-    console.log("Provided key has a location of " + location.location);
+    console.log("Provided key has a location of " + location);
   }
 }, function(error) {
   console.log("Error: " + error);
 });
 
+var petsInQuery = {};
 
+var geoQuery = geoFire.query({
+  center: [39.2833, 76.6167],
+  radius: 10.5
+});
 
+var onKeyEnteredRegistration = geoQuery.on("key_entered", function("pet_1", location, distance) {
+  console.log(key + " entered query at " + location + " (" + distance + " km from center)");
+});
