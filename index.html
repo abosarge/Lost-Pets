@@ -1,67 +1,38 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html>
   <head>
-    <title>GeoFire HTML5 Geolocation API Example</title>
+    <title>Geolocation</title>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
 
-
-  <!-- STYLESHEETS -->
-  <link href="css/animate.min.css" rel="stylesheet">
-  <link href="css/font-awesome.min.css" rel="stylesheet">
-  <link href="css/buttons.css" rel="stylesheet">
-  <link href="css/site.css" rel="stylesheet">
-
-    <!-- Firebase -->
-    <script src="https://cdn.firebase.com/js/client/2.2.5/firebase.js"></script>
-
-    <!-- RSVP -->
-    <script src="js/vendor/rsvp.min.js"></script>
-
-    <!-- GeoFire -->
-    <script src="js/vendor/geofire.min.js"></script>
-
-    <!-- Custom JS -->
-   <!--  <script src="js/html5Geolocation.js" defer></script> -->
-
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="css/html5Geolocation.css">
-  </head>
-
-  <body>
-    <!-- MAP -->
-  <div id="map-canvas"></div>
-
-  
-    <!-- Message log -->
+      <!-- Required Scripts -->
     
+      <!-- RSVP -->
+      <script src="js/vendor/rsvp.min.js"></script>
 
-    <!-- JAVASCRIPT -->
-  <!-- Google Maps -->
-  <script src="https://maps.googleapis.com/maps/api/js"></script>
-  <script>
-  function initialize() {}
-</script>
+      <!-- Firebase -->
+      <script src="https://cdn.firebase.com/js/client/2.2.5/firebase.js"></script>
+
+      <!-- GeoFire -->
+      <script src="https://cdn.firebase.com/libs/geofire/3.2.2/geofire.min.js"></script>
 
 
-  <!-- Lo-Dash -->
-  <script src="js/vendor/lodash.min.js"></script>
-
-  <!-- Custom JavaScript -->
-  <script src="js/sfVehicles.js"></script>
-
-  <script type="text/javascript">
-    google.maps.event.addDomListener(window, "load", initializeMap);
-  </script>
-
-  <script>
-    var _gaq = _gaq || [];
-    _gaq.push(['_setAccount', 'UA-37102688-1']);
-    _gaq.push(['_trackPageview']);
-
-    (function() {
-    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-    })();
-  </script>
+    <style>
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+      #map {
+        height: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="map"></div>
+    <script src="js/main.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDhNZwKQUo9n1ZJM5eXo3HS3uO2St4Qs_I&signed_in=true&callback=initMap"
+        async defer>
+    </script>
   </body>
 </html>
