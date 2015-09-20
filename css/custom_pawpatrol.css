@@ -16,9 +16,11 @@
   justify-content: center;
 }
 
-@media screen (max-width: 680px) {
-  display: flex;
-  flex-direction: column;
+@media (max-width: 680px) {
+  .headerlogo {
+    display: flex;
+    flex-direction: column;
+  }
 }
 
 .logo {
@@ -30,7 +32,7 @@
   width: 250px;
 }
 
-@media screen (max-width: 680px) {
+@media (max-width: 680px) {
   .headerlogo {
     width: 200px;
   }
@@ -111,10 +113,22 @@
   background-color: #FFFFFF;
 }
 
+@media (max-width: 680px) {
+  .formwrapper {
+    width: 100%;
+  }
+}
+
 .row {
   display: flex;
   flex-direction: row;
   width: 100%;
+}
+
+@media (max-width: 680px) {
+  .row {
+    width: 90%;
+  }
 }
 
 .element {
@@ -125,12 +139,6 @@ input:focus {
   outline: 0;
   border: 1px solid #bbb;
 }
-
-/*
-input[type=text], select {
-  width: 100%;
-}
-*/
 
 .row .element:nth-child(odd) {
   font-weight: bold;
@@ -150,6 +158,12 @@ input[type=text], select {
   cursor: pointer;
 }
 
+@media (max-width: 680px) {
+  .row .element:nth-child(odd) {
+    width: 5rem;
+  }
+}
+
 .row .element:nth-child(even) {
   width: 72%;
   padding: 2px;
@@ -160,6 +174,12 @@ input[type=text], select {
   float: right;
   box-shadow: inset 0px 2px 2px #ececec;
   margin: 6px 2px 0 0;
+}
+
+@media (max-width: 680px) {
+.row .element:nth-child(even) {
+  width: 20rem;
+}
 }
 
 
@@ -229,185 +249,8 @@ input[type=file], select {
   test-align: center;
 }
 
-/*
-.clearfix:after {
-     visibility: hidden;
-     display: block;
-     font-size: 0;
-     content: " ";
-     clear: both;
-     height: 0;
-}
-.clearfix { display: inline-block; }*/
-/* start commented backslash hack \*/
-/*
-* html .clearfix { height: 1%; }
-.clearfix { display: block; }
-*/
-
-/* close commented backslash hack */
-/*
-.row .element:nth-child(odd) {
-  width: 100px;
-}
-*/
-
 .row .element:nth-child(even) {
   width: 75%;
 }
 
-/*
-#send {
-  background: #FFFFFF;
-  -moz-border-radius:3px;
-  -webkit-border-radius:3px;
-  border-radius:3px;
-  padding: 1em;
-  float:left;
-  left:0px;
-  bottom:0px;
-  width:300px;
-  z-index: 1;
-}
 
-input {
-  font-size: 1em;
-  font-family: 'Roboto', sans-serif;
-  width: 100%;
-  margin-bottom: 5px;
-  border: 2px solid #CCC;
-  margin-right:-2px;
-}
-
-input:placeholder {
-  color: #ccc;
-}
-
-.formlocation {
-  width: 175px;
-}
-
-.flexform_description {
-  width: 250px;
-  height: 4em;
-}
-
-.flexform {
-  flex: 1;
-  position: relative;
-  text-decoration: none;
-  width: 200px;
-}
-
-input:focus,
-textarea:focus,
-select:focus {
-  background-color: #DCDCDC;
-}
-
-
-/* <style type="text/css">
-.form-style-5{
-    max-width: 500px;
-    padding: 10px 20px;
-    background: #f4f7f8;
-    margin: 10px auto;
-    padding: 20px;
-    background: #f4f7f8;
-    border-radius: 8px;
-    font-family: Georgia, "Times New Roman", Times, serif;
-}
-.form-style-5 fieldset{
-    border: none;
-}
-.form-style-5 legend {
-    font-size: 1.4em;
-    margin-bottom: 10px;
-}
-.form-style-5 label {
-    display: block;
-    margin-bottom: 8px;
-}
-.form-style-5 input[type="text"],
-.form-style-5 input[type="date"],
-.form-style-5 input[type="datetime"],
-.form-style-5 input[type="email"],
-.form-style-5 input[type="number"],
-.form-style-5 input[type="search"],
-.form-style-5 input[type="time"],
-.form-style-5 input[type="url"],
-.form-style-5 textarea,
-.form-style-5 select {
-    font-family: Georgia, "Times New Roman", Times, serif;
-    background: rgba(255,255,255,.1);
-    border: none;
-    border-radius: 4px;
-    font-size: 16px;
-    margin: 0;
-    outline: 0;
-    padding: 7px;
-    width: 100%;
-    box-sizing: border-box;
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    background-color: #e8eeef;
-    color:#8a97a0;
-    -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.03) inset;
-    box-shadow: 0 1px 0 rgba(0,0,0,0.03) inset;
-    margin-bottom: 30px;
-
-}
-.form-style-5 input[type="text"]:focus,
-.form-style-5 input[type="date"]:focus,
-.form-style-5 input[type="datetime"]:focus,
-.form-style-5 input[type="email"]:focus,
-.form-style-5 input[type="number"]:focus,
-.form-style-5 input[type="search"]:focus,
-.form-style-5 input[type="time"]:focus,
-.form-style-5 input[type="url"]:focus,
-.form-style-5 textarea:focus,
-.form-style-5 select:focus{
-    background: #d2d9dd;
-}
-.form-style-5 select{
-    -webkit-appearance: menulist-button;
-    height:35px;
-}
-.form-style-5 .number {
-    background: #1abc9c;
-    color: #fff;
-    height: 30px;
-    width: 30px;
-    display: inline-block;
-    font-size: 0.8em;
-    margin-right: 4px;
-    line-height: 30px;
-    text-align: center;
-    text-shadow: 0 1px 0 rgba(255,255,255,0.2);
-    border-radius: 15px 15px 15px 0px;
-}
-
-.form-style-5 input[type="submit"],
-.form-style-5 input[type="button"]
-{
-    position: relative;
-    display: block;
-    padding: 19px 39px 18px 39px;
-    color: #FFF;
-    margin: 0 auto;
-    background: #1abc9c;
-    font-size: 18px;
-    text-align: center;
-    font-style: normal;
-    width: 100%;
-    border: 1px solid #16a085;
-    border-width: 1px 1px 3px;
-    margin-bottom: 10px;
-}
-.form-style-5 input[type="submit"]:hover,
-.form-style-5 input[type="button"]:hover
-{
-    background: #109177;
-}
-</style>
-*/
