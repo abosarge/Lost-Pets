@@ -56,6 +56,26 @@
   }
 }
 
+#report-btn{
+  background: #CCCCCC;
+  padding: 1em;
+  float:left;
+  position: absolute;
+  width:350px;
+  z-index: 1;
+}
+#report-btn h1 {
+  color: #8dbc46;
+  font-size: 2em;
+  font-family: 'Roboto', sans-serif;
+  font-weight:800;
+  line-height:1.5em;
+  text-align:center;
+  text-transform: uppercase;
+  margin:0px auto;
+  text-shadow:0px 1px 0px rgba(255,255,255,0.3)
+}
+
 #report {
   background: #FFFFFF;
   -moz-border-radius:3px;
@@ -69,22 +89,14 @@
   z-index: 1;
 }
 
-#report header h1 {
-  color: #8dbc46;
-  font-size: 2em;
-  font-family: 'Roboto', sans-serif;
-  font-weight:800;
-  line-height:1.5em;
-  text-align:center;
-  text-transform: uppercase;
-  margin:0px auto;
-  text-shadow:0px 1px 0px rgba(255,255,255,0.3)
-}
-
 #report p {
   font-family: 'Roboto', sans-serif;
   font-size: .75em;
   line-height: 1.5em;
+}
+
+#map {
+  height: 100%;
 }
 
 .formwrapper {
