@@ -28,41 +28,42 @@
   <link href='https://api.mapbox.com/mapbox.js/v2.2.2/mapbox.css' rel='stylesheet' />
 
   <style>
-    .menu-ui {
-      background:#fff;
-      position:absolute;
-      top:10px;right:10px;
-      z-index:1;
-      border-radius:3px;
-      width:120px;
-      border:1px solid rgba(0,0,0,0.4);
-      }
-      .menu-ui a {
-        font-size:13px;
-        color:#cdeab3;
-        display:block;
-        margin:0;padding:0;
-        padding:10px;
-        text-decoration:none;
-        border-bottom:1px solid rgba(0,0,0,0.25);
-        text-align:center;
+  .menu-ui {
+        background:#fff;
+        position:absolute;
+        bottom: 8%;
+        right: 0;
+        z-index:1;
+        width:120px;
+        border:1px solid rgba(0,0,0,0.4);
         }
-        .menu-ui a:first-child {
-          border-radius:3px 3px 0 0;
+        .menu-ui a {
+          font-size:13px;
+          color: #8dbc46;
+          display:block;
+          margin:0;padding:0;
+          padding:10px;
+          text-decoration:none;
+          border-bottom:1px solid rgba(0,0,0,0.25);
+          text-align:center;
           }
-        .menu-ui a:last-child {
-          border:none;
-          border-radius:0 0 3px 3px;
+          .menu-ui a:last-child {
+            border:none;
+            }
+          .menu-ui a:hover {
+            background:#f8f8f8;
+            color:#404040;
+            }
+          .menu-ui a.active,
+          .menu-ui a.active:hover {
+            background:#8dbc46;
+            color:#FFF;
+        }
+        @media (max-width: 680px) {
+          nav {
+            visibility: hidden;
           }
-        .menu-ui a:hover {
-          background:#f8f8f8;
-          color:#404040;
-          }
-        .menu-ui a.active,
-        .menu-ui a.active:hover {
-          background:#3887BE;
-          color:#FFF;
-      }`
+        }
 </style>
 <nav id='menu-ui' class='menu-ui'>
   <a href='#' class='active' id='filter-all'>All Info</a>
@@ -191,19 +192,21 @@
     <!-- MAP -->
     <div id="map"></div>
 
-
-
   <!-- JAVASCRIPT -->
 
   <script LANGUAGE="JavaScript">
 
     function readText() {
-        var
-    }
+        var status = document.getElementById('Status');
+        var petType = document.getElementById('Pet');
+        var date = document.getElementById('date');
+        var time = document.getElementById('time');
 
+        console.log(status.value);
+        console.log("testing");
 
     L.mapbox.accessToken = 'pk.eyJ1IjoibHlubXVsZHJvdyIsImEiOiJjaWVzMWR2Z3AwMGRvc2dtM2c4NXVydzlqIn0.0CAMMM52Z43LLniDwGFYmA';
-    var map = L.mapbox.map('map', 'lynmuldrow.ng7hjjfg');
+    var map = L.mapbox.map('map', 'lynmuldrow.ng7hjjfg').setView([39.2833, -76.6167], 6);
 
     L.mapbox.featureLayer({
         // this feature is in the GeoJSON format: see geojson.org
@@ -213,10 +216,7 @@
             type: 'Point',
             // coordinates here are in longitude, latitude order because
             // x, y is the standard for GeoJSON and many formats
-            coordinates: [
-              -77.03221142292,
-              38.913371603574
-            ]
+            coordinates: [39.28333,-76.6167]
         },
         properties: {
             title: 'Peregrine Espresso',
@@ -228,27 +228,22 @@
             'marker-symbol': 'cafe'
         }
 
-        // Disable drag and zoom handlers.
-            map.dragging.disable();
-            map.touchZoom.disable();
-            map.doubleClickZoom.disable();
-            map.scrollWheelZoom.disable();
-            // Disable tap handler, if present.
-            if (map.tap) map.tap.disable();
     }).addTo(map);
+}
+
+    // Disable drag and zoom handlers.
+        //map.dragging.disable();
+        map.touchZoom.disable();
+        map.doubleClickZoom.disable();
+        map.scrollWheelZoom.disable();
+        // Disable tap handler, if present.
+        if (map.tap) map.tap.disable();
+
+    map.featureLayer.on('click', function(e) {
+           map.panTo(e.layer.getLatLng());
+           });
 </script>
 
- <script>
-// Provide your access token
-L.mapbox.accessToken = 'pk.eyJ1IjoibHlubXVsZHJvdyIsImEiOiJjaWVzMWR2Z3AwMGRvc2dtM2c4NXVydzlqIn0.0CAMMM52Z43LLniDwGFYmA';
-// Create a map in the div #map
-
-var map = L.mapbox.map('map', 'lynmuldrow.ng7hjjfg');
-
- map.featureLayer.on('click', function(e) {
-        map.panTo(e.layer.getLatLng());
-        });
-</script>
 
 <script type="text/javascript">
   $(document).ready(function(){
