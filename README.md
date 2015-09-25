@@ -1,3 +1,11 @@
+<h1 align="center">
+<br>
+<img width="400" src="http://miramollar.com/pawpatrol/images/PawPatrol.png" alt="logo">
+<br>
+<br>
+<br>
+</h1>
+
 # Paw Patrol
 An app that reunities pets with their families!
 
